@@ -1,2 +1,16 @@
 fastapi
 uvicorn
+pydantic
+python-multipart
+sqlalchemy
+python-jose
+passlib[bcrypt]
+python-dotenv
+pypdf
+docx2txt
+alembic
+requests
+qdrant-client
+langchain-openai
+langchain-text-splitters
+markdown
