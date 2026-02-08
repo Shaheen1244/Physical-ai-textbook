@@ -1,8 +1,8 @@
-# Specification Quality Checklist: RAG Qdrant Integration
+# Specification Quality Checklist: Home Page Images for Physical AI & Humanoid Robotics Educational Website
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
-**Created**: 2026-01-06
-**Feature**: [specs/1-rag-qdrant/spec.md](specs/1-rag-qdrant/spec.md)
+**Created**: 2026-01-05
+**Feature**: [Link to spec.md](../2-home-page-images/spec.md)
 
 ## Content Quality
 
@@ -31,4 +31,4 @@
 
 ## Notes
 
-- All checklist items have been validated and completed successfully
+- All specification quality items have been validated and completed successfully.
