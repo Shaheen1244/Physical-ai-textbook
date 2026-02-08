@@ -1,0 +1,156 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "book-rag-setup",
+              "path": "/docs/book-rag-setup"
+            },
+            {
+              "id": "chapter_1",
+              "path": "/docs/chapter_1",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_10",
+              "path": "/docs/chapter_10",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_11",
+              "path": "/docs/chapter_11",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_12",
+              "path": "/docs/chapter_12",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_13",
+              "path": "/docs/chapter_13",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_14",
+              "path": "/docs/chapter_14",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_2",
+              "path": "/docs/chapter_2",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_3",
+              "path": "/docs/chapter_3",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_4",
+              "path": "/docs/chapter_4",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_5",
+              "path": "/docs/chapter_5",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_6",
+              "path": "/docs/chapter_6",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_7",
+              "path": "/docs/chapter_7",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_8",
+              "path": "/docs/chapter_8",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter_9",
+              "path": "/docs/chapter_9",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "chapter-6",
+              "path": "/docs/chapter-6"
+            },
+            {
+              "id": "embodied-intelligence",
+              "path": "/docs/embodied-intelligence",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "gazebo-simulation",
+              "path": "/docs/gazebo-simulation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "isaac-sim",
+              "path": "/docs/isaac-sim",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "robotic-manipulation",
+              "path": "/docs/robotic-manipulation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ros2-fundamentals",
+              "path": "/docs/ros2-fundamentals",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "synthetic-data-generation",
+              "path": "/docs/synthetic-data-generation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "urdf-xacro-modeling",
+              "path": "/docs/urdf-xacro-modeling",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "urdu-intro",
+              "path": "/docs/urdu-intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "urdu-robotics-fundamentals",
+              "path": "/docs/urdu-robotics-fundamentals",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
