@@ -1,46 +1,29 @@
-# Scripts Directory
+# AI & Humanoid Robotics Technical Book - Specifications
 
-This directory contains utility scripts for the Physical AI Textbook project.
+This directory contains all specifications for the AI & Humanoid Robotics technical book project.
 
-## Available Scripts
+## Directory Structure
 
-### `indexBook.js`
+- `001-textbook-content/spec.md` - Feature specification document
+- `001-textbook-content/tasks.md` - Implementation tasks
+- `001-textbook-content/checklists/` - Quality checklists
 
-Indexes all book content from the `/docs` directory into Qdrant vector database for RAG (Retrieval Augmented Generation) functionality.
+## Project Overview
 
-#### Purpose
-- Scans all markdown files inside the `/docs` directory
-- Splits content into meaningful chunks (by heading/section)
-- Generates embeddings for each chunk using OpenAI
-- Creates or reuses Qdrant collection named "book"
-- Upserts all embeddings into Qdrant
-- Does NOT modify any markdown files
+This project creates a comprehensive Docusaurus-based technical book titled "AI & Humanoid Robotics" that teaches:
 
-#### Usage
-```bash
-node scripts/indexBook.js
-# or
-npm run index-book
-```
+- ROS 2 fundamentals and advanced concepts
+- Digital Twin technologies (Gazebo & Unity)
+- NVIDIA Isaac AI Brain systems
+- Vision-Language-Action (VLA) systems
+- An integrated AI assistant RAG widget
 
-#### Prerequisites
-- Ensure `.env.local` contains the required environment variables:
-  - `QDRANT_URL`: The cloud Qdrant cluster URL
-  - `QDRANT_API_KEY`: The API key for Qdrant cloud
-  - `QDRANT_COLLECTION`: Collection name (defaults to "book")
-  - `OPENAI_API_KEY`: Your OpenAI API key
+## Getting Started
 
-#### Expected Output
-The script will:
-1. Scan and read all markdown files from the docs directory
-2. Process each file and split into chunks
-3. Generate embeddings for each chunk
-4. Store the embeddings in the Qdrant collection
-5. Provide progress updates and final statistics
+1. Review the [specification](001-textbook-content/spec.md) to understand the project requirements
+2. Follow the [tasks](001-textbook-content/tasks.md) to implement the textbook content
+3. Use the checklists to ensure quality standards are met
 
-#### Troubleshooting
-- If you get connection errors, verify that:
-  - Qdrant service is running and accessible
-  - Network connectivity is available
-  - URL and API key in `.env.local` are correct
-  - Firewall is not blocking the connection
+## Next Steps
+
+Run the implementation by following the tasks in sequence, starting with Phase 1 setup tasks.
