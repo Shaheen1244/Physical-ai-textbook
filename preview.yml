@@ -1,0 +1,44 @@
+name: Preview Deployment
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+      env:
+        NODE_ENV: production
+
+    - name: Deploy Preview to Vercel
+      run: |
+        # Install Vercel CLI
+        npm install -g vercel@latest
+
+        # Pull Vercel configuration
+        vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+        # Build for preview
+        vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+        # Deploy to Vercel as preview
+        vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      env:
+        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
