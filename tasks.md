@@ -1,107 +1,91 @@
-# Tasks for AI & Humanoid Robotics Technical Book (Branch: 001-textbook-content)
+# Implementation Tasks: RAG Qdrant Integration
 
-## Phase 1: Setup and Project Initialization
+**Feature**: RAG Qdrant Integration
+**Branch**: `1-rag-qdrant`
+**Spec**: `/specs/1-rag-qdrant/spec.md`
+**Plan**: `/specs/1-rag-qdrant/plan.md`
 
-- [ ] T001 Create project structure with docs/, src/, api/, and config directories
-- [ ] T002 Configure Docusaurus with proper theme, navigation, and documentation layout
-- [ ] T003 Set up sidebar navigation structure for all planned chapters
-- [ ] T004 Create initial configuration files (docusaurus.config.js, package.json dependencies)
-- [ ] T005 Establish content folder structure matching the planned modules
+## Phase 1: Setup Tasks
+
+- [x] T001 Create book indexer module in `api/book_indexer.py`
+- [x] T002 Update Qdrant vector database configuration to use "book" collection in `api/vector_db.py`
+- [x] T003 Add required dependencies to `api/requirements.txt` for document processing
 
 ## Phase 2: Foundational Tasks
 
-- [ ] T006 Create base CSS styling for technical diagrams and code examples
-- [ ] T007 Set up image and diagram assets folder structure
-- [ ] T008 Implement basic AI assistant RAG widget framework
-- [ ] T009 Create template for chapter structure with learning objectives, content, exercises
-- [ ] T010 Establish code example testing framework for verification procedures
+- [x] T004 [P] Update document processor to handle book-specific metadata in `api/document_processor.py`
+- [x] T005 [P] Modify RAG chain to target book collection specifically in `api/rag_chain.py`
+- [x] T006 [P] Update vector database to use "book" collection name in `api/vector_db.py`
+- [x] T007 [P] Create configuration for similarity threshold and chunking in `api/config.py`
 
-## Phase 3: User Story 1 - Introduction Chapter (Priority: P1)
+## Phase 3: User Story 1 - Query Book Content via Chatbot (P1)
 
-- [ ] T011 [US1] Create introduction chapter with learning objectives at docs/intro.md
-- [ ] T012 [US1] Write foundational concepts section covering AI & Humanoid Robotics overview
-- [ ] T013 [P] [US1] Create 3 diagrams explaining key technologies (ROS 2, Digital Twins, AI Brain, VLA)
-- [ ] T014 [P] [US1] Add 2 code snippets demonstrating basic ROS 2 concepts
-- [ ] T015 [US1] Include 3 exercises with solutions at the end of the chapter
-- [ ] T016 [US1] Ensure content follows Docusaurus markdown format
-- [ ] T017 [US1] Verify the chapter renders properly with diagrams and code blocks
+- [x] T008 [US1] Create book-specific chat endpoint in `api/main.py`
+- [x] T009 [US1] Update RAG chain to respond with "This topic is not covered in the book" when no content found in `api/rag_chain.py`
+- [x] T010 [US1] Implement confidence scoring for book content retrieval in `api/rag_chain.py`
+- [x] T011 [US1] Add error handling for book query endpoint in `api/main.py`
+- [ ] T012 [US1] Create test for book query endpoint in `tests/integration/test_book_chat.py`
 
-## Phase 4: User Story 2 - ROS 2 Fundamentals Chapter (Priority: P2)
+**Independent Test**: User can ask a question in the chatbot interface and receive a relevant answer that is based on the book content, demonstrating the RAG functionality.
 
-- [ ] T018 [US2] Create ROS 2 fundamentals chapter at docs/ros2-fundamentals.md
-- [ ] T019 [US2] Write comprehensive content covering Nodes, Topics, Services, and Actions
-- [ ] T020 [P] [US2] Create 5 diagrams illustrating ROS 2 architecture and concepts
-- [ ] T021 [P] [US2] Add 6 code examples (2 for each concept: Nodes, Topics, Services, Actions)
-- [ ] T022 [P] [US2] Include 5 exercises with solutions
-- [ ] T023 [US2] Add practical examples using TurtleSim or similar
-- [ ] T024 [US2] Validate all code examples compile and run in ROS 2 Humble Hawksbill
+**Acceptance Scenarios**:
+1. Given the user is on a page with the chatbot widget, When the user types a question related to book content and submits it, Then the system returns an answer based on the book content within 5 seconds
+2. Given the user asks a question that has no relevant content in the book, When the user submits the question, Then the system responds with "This topic is not covered in the book"
 
-## Phase 5: User Story 3 - Digital Twin Chapter (Priority: P3)
+## Phase 4: User Story 2 - Index Book Content (P1)
 
-- [ ] T025 [US3] Create Digital Twin chapter covering Gazebo and Unity at docs/digital-twin.md
-- [ ] T026 [US3] Write content on Gazebo simulation for humanoid robots
-- [ ] T027 [US3] Write content on Unity simulation for humanoid robots
-- [ ] T028 [P] [US3] Create 4 diagrams showing Gazebo workflow and simulation concepts
-- [ ] T029 [P] [US3] Create 4 diagrams showing Unity workflow and simulation concepts
-- [ ] T030 [P] [US3] Add 4 code examples for Gazebo robot simulation
-- [ ] T031 [P] [US3] Add 4 code examples for Unity robot simulation
-- [ ] T032 [US3] Include 4 exercises with solutions for simulation concepts
-- [ ] T033 [US3] Add tutorials for creating custom worlds and models in both platforms
-- [ ] T034 [US3] Verify all Gazebo examples run in ROS 2 environment
-- [ ] T035 [US3] Verify Unity examples function properly
+- [x] T013 [US2] Create BookIndexer class in `api/book_indexer.py` to read all markdown files from /docs
+- [x] T014 [US2] Implement markdown file reading and parsing logic in `api/book_indexer.py`
+- [x] T015 [US2] Create chunking logic for book sections/chapters in `api/book_indexer.py`
+- [x] T016 [US2] Implement embedding generation for book content chunks in `api/book_indexer.py`
+- [x] T017 [US2] Store embeddings in Qdrant "book" collection with metadata in `api/book_indexer.py`
+- [x] T018 [US2] Create indexing endpoint in `api/main.py`
+- [x] T019 [US2] Add indexing status endpoint in `api/main.py`
+- [ ] T020 [US2] Create test for book indexing functionality in `tests/integration/test_book_indexing.py`
 
-## Phase 6: User Story 4 - AI Brain Chapter (Priority: P4)
+**Independent Test**: The system can read all markdown files in /docs, process them into chunks, generate embeddings, and store them in a Qdrant collection named "book".
 
-- [ ] T036 [US4] Create NVIDIA Isaac AI Brain chapter at docs/ai-brain.md
-- [ ] T037 [US4] Write comprehensive content on Isaac Sim and AI Brain concepts
-- [ ] T038 [P] [US4] Create 4 diagrams of AI Brain architecture and concepts
-- [ ] T039 [P] [US4] Add 4 code examples for Isaac AI implementations
-- [ ] T040 [US4] Include 4 exercises with solutions
-- [ ] T041 [US4] Cover Isaac ROS components and integration
-- [ ] T042 [US4] Demonstrate intelligent decision-making behaviors
-- [ ] T043 [US4] Validate AI examples demonstrate intelligent behaviors in simulation
+**Acceptance Scenarios**:
+1. Given book markdown files exist in the /docs directory, When the indexing process runs, Then all content is processed into appropriate chunks and stored in the "book" Qdrant collection
+2. Given the indexing process has completed, When checking the Qdrant collection, Then the "book" collection contains all book content as vector embeddings with associated metadata
 
-## Phase 7: User Story 5 - Vision-Language-Action Chapter (Priority: P5)
+## Phase 5: User Story 3 - Integrate with Existing Chatbot Widget (P2)
 
-- [ ] T044 [US5] Create VLA systems chapter at docs/vla-systems.md
-- [ ] T045 [US5] Write content on Vision-Language-Action system concepts
-- [ ] T046 [P] [US5] Create 4 diagrams of VLA architectures and concepts
-- [ ] T047 [P] [US5] Add 3 code examples with open-source VLA models
-- [ ] T048 [US5] Include 4 exercises with solutions
-- [ ] T049 [US5] Cover RT-1, SayCan, PaLM-E implementations
-- [ ] T050 [US5] Verify VLA examples run with sample inputs and produce meaningful outputs
+- [x] T021 [US3] Update ChatbotWidget to use book-specific endpoint in `src/components/ChatbotWidget.js`
+- [x] T022 [US3] Update chatAPI utility to route to book-specific endpoint in `src/utils/chatAPI.js`
+- [x] T023 [US3] Update welcome message in ChatbotWidget to reflect book-specific assistance in `src/components/ChatbotWidget.js`
+- [x] T024 [US3] Ensure frontend does not access server-only variables in `src/components/ChatbotWidget.js`
+- [ ] T025 [US3] Add frontend integration test in `tests/frontend/test_chatbot_integration.js`
 
-## Phase 8: Additional Content and Exercises
+**Independent Test**: The existing ChatbotWidget can be configured to use the RAG backend instead of its current response mechanism when querying about book content.
 
-- [ ] T051 Create comprehensive exercise solutions manual at docs/solutions-manual.md
-- [ ] T052 Develop instructor resources including lesson plans and presentation slides
-- [ ] T053 Create accessibility features: alt text for diagrams, screen reader compatibility
-- [ ] T054 Implement keyboard navigation for interactive elements
-- [ ] T055 Add color contrast improvements and text alternatives for visual content
+**Acceptance Scenarios**:
+1. Given the ChatbotWidget is configured for book queries, When a user submits a question, Then the response comes from the RAG system using book content
 
-## Phase 9: AI Assistant RAG Widget Implementation
+## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T056 [P] Implement backend API endpoints for RAG widget at api/rag-widget.js
-- [ ] T057 [P] Create frontend component for AI assistant widget
-- [ ] T058 Integrate RAG functionality with textbook content
-- [ ] T059 Test widget accuracy with sample questions (target 85%+ accuracy)
-- [ ] T060 Implement fallback to documented resources for inaccurate answers
+- [x] T026 Add environment variable validation for Qdrant and OpenAI settings in `api/main.py`
+- [x] T027 Update .env.example with required environment variables for book RAG system
+- [x] T028 Add health check endpoint for book RAG functionality in `api/main.py`
+- [x] T029 Update documentation for book indexing and querying in `docs/book-rag-setup.md`
+- [x] T030 Add error logging for book RAG operations in `api/main.py`
+- [x] T031 Create startup script to ensure Qdrant collection exists before indexing in `api/main.py`
 
-## Phase 10: Testing and Verification
+## Dependencies
 
-- [ ] T061 Create test framework for all code examples in textbook
-- [ ] T062 Implement automated verification for all ROS 2 examples
-- [ ] T063 Test all simulation examples in both Gazebo and Unity
-- [ ] T064 Verify all NVIDIA Isaac examples demonstrate intelligent behaviors
-- [ ] T065 Test all VLA system examples with sample inputs
-- [ ] T066 Validate all exercises have correct solutions
+- User Story 2 (Index Book Content) must be completed before User Story 1 (Query Book Content) can function
+- Foundational tasks must be completed before any user story tasks
 
-## Phase 11: Polish and Cross-Cutting Concerns
+## Parallel Execution Examples
 
-- [ ] T067 Review all content for undergraduate student accessibility
-- [ ] T068 Ensure WCAG 2.1 AA compliance across all content
-- [ ] T069 Update content with latest framework versions
-- [ ] T070 Optimize images and diagrams for web delivery
-- [ ] T071 Create comprehensive bibliography and further reading section
-- [ ] T072 Final review of all chapters for consistency and accuracy
-- [ ] T073 Deploy site and verify all functionality works in production environment
+- Tasks T004, T005, T006, T007 can be executed in parallel as they modify different files
+- Tasks T008, T009, T010, T011 can be executed in parallel as they're part of the same user story but different aspects
+- Tasks T021, T022, T023, T024 can be executed in parallel as they're frontend changes
+
+## Implementation Strategy
+
+1. **MVP Scope**: Complete User Story 2 (Index Book Content) and User Story 1 (Query Book Content) to have basic functionality
+2. **Incremental Delivery**:
+   - First: Basic indexing and querying functionality
+   - Second: Integration with existing chatbot widget
+   - Third: Polish and additional features

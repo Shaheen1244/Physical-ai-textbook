@@ -1,123 +1,112 @@
-# Implementation Plan: AI & Humanoid Robotics Technical Book
+# Implementation Plan: [FEATURE]
 
-**Feature**: AI & Humanoid Robotics Technical Book
-**Created**: 2025-12-30
-**Status**: Draft
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
-## Architecture Overview
+**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
-The AI & Humanoid Robotics Technical Book will be built using Docusaurus as a static site generator with additional components for interactive learning experiences.
+## Summary
 
-### Tech Stack
+[Extract from feature spec: primary requirement + technical approach from research]
 
-- **Framework**: Docusaurus 3.x with React
-- **Language**: JavaScript/TypeScript for frontend components
-- **Backend**: Node.js API for AI assistant RAG widget
-- **Styling**: CSS Modules, Tailwind CSS
-- **AI Integration**: LangChain.js with Hugging Face models for RAG functionality
-- **Simulation**: Docker containers for ROS 2, Gazebo, and Unity environments
-- **Content**: Markdown with MDX extensions for interactive components
+## Technical Context
 
-### Project Structure
+<!--
+  ACTION REQUIRED: Replace the content in this section with the technical details
+  for the project. The structure here is presented in advisory capacity to guide
+  the iteration process.
+-->
 
+**Language/Version**: JavaScript/TypeScript with Node.js (frontend), Python 3.11 (backend)
+**Primary Dependencies**: Qdrant vector database, OpenAI embeddings, FastAPI, React, Langchain
+**Storage**: Qdrant vector database for embeddings, existing /docs directory for markdown files
+**Testing**: Jest for frontend, pytest for backend
+**Target Platform**: Web application (Docusaurus-based documentation site)
+**Project Type**: Web application with frontend and backend components
+**Performance Goals**: <5 second response time for user queries, ability to handle book content indexing efficiently
+**Constraints**: Must integrate with existing ChatbotWidget, preserve original markdown files, localhost testing capability
+**Scale/Scope**: Single book content source, individual user queries, scalable vector storage for book sections
+
+## Constitution Check
+
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+
+[Gates determined based on constitution file]
+
+## Project Structure
+
+### Documentation (this feature)
+
+```text
+specs/[###-feature]/
+├── plan.md              # This file (/sp.plan command output)
+├── research.md          # Phase 0 output (/sp.plan command)
+├── data-model.md        # Phase 1 output (/sp.plan command)
+├── quickstart.md        # Phase 1 output (/sp.plan command)
+├── contracts/           # Phase 1 output (/sp.plan command)
+└── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
-project-root/
-├── docs/                    # Textbook content
-│   ├── intro.md            # Introduction chapter
-│   ├── ros2-fundamentals.md # ROS 2 chapter
-│   ├── digital-twin.md     # Gazebo/Unity chapter
-│   ├── ai-brain.md         # NVIDIA Isaac chapter
-│   ├── vla-systems.md      # VLA systems chapter
-│   └── ...                 # Additional chapters
-├── src/                    # Custom React components
-│   ├── components/         # Reusable components
-│   ├── pages/              # Custom pages
-│   └── css/                # Custom styles
-├── api/                    # Backend API endpoints
-│   └── rag-widget.js       # AI assistant endpoint
-├── static/                 # Static assets
-│   └── img/                # Diagrams and images
-├── docusaurus.config.js    # Docusaurus configuration
-├── sidebars.js             # Navigation structure
-└── package.json            # Dependencies
+
+### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
+
+```text
+# Web application (when "frontend" + "backend" detected)
+api/
+├── main.py
+├── rag_chain.py
+├── document_processor.py
+├── vector_db.py
+├── book_indexer.py
+└── personalization.py
+
+backend/
+├── main.py
+
+src/
+├── components/
+│   ├── ChatbotWidget.js
+│   └── ChatbotWidget.module.css
+├── utils/
+│   └── chatAPI.js
+└── pages/
+    └── index.js
+
+docs/
+├── chapter_1.md
+├── chapter_2.md
+├── chapter_3.md
+├── chapter_4.md
+├── chapter_5.md
+├── chapter_6.md
+├── chapter_7.md
+├── chapter_8.md
+├── chapter_9.md
+├── chapter_10.md
+├── chapter_11.md
+├── chapter_12.md
+├── chapter_13.md
+├── chapter_14.md
+└── intro.md
+
+tests/
+├── contract/
+├── integration/
+└── unit/
 ```
 
-## Implementation Strategy
+**Structure Decision**: Web application with separate API backend using FastAPI for RAG functionality and React frontend components for the chatbot interface. The existing structure uses an 'api' directory for the backend API and 'src' for frontend components, with book content in the 'docs' directory.
 
-### Phase 1: Foundation
-- Set up Docusaurus project with proper configuration
-- Create base styling and layout components
-- Implement basic navigation structure
+## Complexity Tracking
 
-### Phase 2: Content Creation
-- Develop each chapter following the template structure
-- Create diagrams and visual aids for each topic
-- Write and test code examples for each technology
+> **Fill ONLY if Constitution Check has violations that must be justified**
 
-### Phase 3: Interactive Features
-- Implement AI assistant RAG widget
-- Add simulation examples with containerization
-- Create exercises and verification procedures
-
-### Phase 4: Testing and Polish
-- Validate all code examples work as expected
-- Ensure accessibility compliance (WCAG 2.1 AA)
-- Optimize for performance and user experience
-
-## Key Decisions
-
-### 1. AI Assistant Implementation
-**Decision**: Use LangChain.js with open-source Hugging Face models for RAG functionality
-**Rationale**: Provides flexibility, avoids vendor lock-in, and maintains cost-effectiveness
-**Trade-offs**: Requires more setup than proprietary solutions but offers better long-term maintainability
-
-### 2. Simulation Environment Delivery
-**Decision**: Containerized solutions (Docker) for simulation environments
-**Rationale**: Provides consistency across platforms while avoiding complex cloud dependencies
-**Trade-offs**: Users need Docker installed but ensures environment reproducibility
-
-### 3. NVIDIA Isaac Integration
-**Decision**: Full integration including Isaac ROS components
-**Rationale**: Provides the most comprehensive learning experience for humanoid robotics
-**Trade-offs**: More complex implementation but better educational value
-
-### 4. Content Licensing
-**Decision**: Creative Commons Attribution (CC BY) license
-**Rationale**: Encourages educational use and collaboration while maintaining attribution
-**Trade-offs**: Less control over commercial use but broader educational impact
-
-## Risk Analysis
-
-### High-Risk Items
-1. **Complexity of Simulation Integration** - Gazebo and Unity are complex systems to integrate
-   - *Mitigation*: Start with basic examples and gradually increase complexity
-   - *Blast Radius*: Could delay simulation chapters
-
-2. **AI Assistant Accuracy** - RAG widget needs to maintain 85%+ accuracy
-   - *Mitigation*: Extensive testing and fallback mechanisms
-   - *Blast Radius*: Could impact user experience if not accurate
-
-### Medium-Risk Items
-1. **Hardware Requirements** - Simulation environments require significant computational resources
-   - *Mitigation*: Provide cloud alternatives and minimum system requirements
-   - *Blast Radius*: Could limit accessibility for some users
-
-## Deployment Strategy
-
-### Development Environment
-- Local development with hot reloading
-- Docker for simulation environment testing
-- Git-based version control with feature branches
-
-### Production Deployment
-- Static site hosting (GitHub Pages, Vercel, or Netlify)
-- API endpoints for AI assistant functionality
-- CDN for optimized asset delivery
-
-## Success Criteria
-
-- All code examples execute successfully with 95%+ success rate
-- AI assistant provides accurate answers with 85%+ accuracy
-- Content accessible to undergraduate students while remaining valuable to advanced users
-- All chapters include learning objectives, exercises, and verification procedures
-- WCAG 2.1 AA compliance achieved across all content
+| Violation | Why Needed | Simpler Alternative Rejected Because |
+|-----------|------------|-------------------------------------|
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
